@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emisión de pólizas · G04 · E3</title>
+<style>
+:root{--bg:#f4f5f9;--card:#fff;--tx:#1d2140;--mut:#5d6280;--bd:#c9cde0;--ac:#2f3b9c;--ok:#1d7a46;--er:#b3261e;--wa:#8a5a00}
+@media (prefers-color-scheme:dark){:root{--bg:#14162a;--card:#1d2040;--tx:#eceefb;--mut:#a4a9c9;--bd:#3a3f6b;--ac:#8c98f5;--ok:#58c68a;--er:#ff8a80;--wa:#f0b955}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--tx);padding:16px}
+main{max-width:860px;margin:auto}h1{font-size:20px;margin:0 0 4px}.sub{color:var(--mut);margin:0 0 14px}
+fieldset{background:var(--card);border:1px solid var(--bd);border-radius:8px;margin:0 0 12px;padding:10px 14px}
+legend{font-weight:600;color:var(--ac);padding:0 6px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 14px}
+label{display:flex;flex-direction:column;font-size:13px;color:var(--mut);gap:2px}
+input,select{font:inherit;padding:6px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--tx)}
+button{font:inherit;padding:8px 14px;border:0;border-radius:6px;background:var(--ac);color:#fff;cursor:pointer;margin:4px 6px 0 0}
+button.sec{background:transparent;color:var(--ac);border:1px solid var(--ac)}button:disabled{opacity:.4;cursor:not-allowed}
+#msg{margin:8px 0;min-height:20px}.er{color:var(--er)}.ok{color:var(--ok)}.wa{color:var(--wa)}
+.pend{font-size:13px;color:var(--wa);margin-top:6px}dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:0}dt{color:var(--mut)}dd{margin:0}
+</style>
+</head>
+<body>
+<main>
+<h1>Emisión de pólizas de automotor</h1>
+<p class="sub">Frente 2 · Aseguradora Pampa · página generada desde la especificación (RF-01 a RF-12, UC-01)</p>
+
+<form id="f" autocomplete="off" onsubmit="return false">
+<fieldset><legend>Usuario</legend><div class="g">
+<label>Productor con usuario propio<select id="usuario"><option value="">Elegir…</option><option>J. PONCE (PAS)</option><option>PRODUCTOR DE PRUEBA 2 (PAS)</option></select></label></div></fieldset>
+
+<fieldset><legend>Tomador y vehículo</legend><div class="g">
+<label>Cliente<select id="cliente"><option value="">Elegir…</option><option>LOPEZ, JUAN CARLOS</option><option>GOMEZ, MARIA ELENA</option><option>PEREZ, ROBERTO</option></select></label>
+<label>Vehículo<select id="vehiculo"><option value="">Elegir…</option><option>FIAT CRONOS</option><option>VOLKSWAGEN GOL</option><option>RENAULT CLIO</option></select></label>
+<label>Año del vehículo<input id="anio" type="number" min="1950" max="2100"></label>
+<label>Valor asegurado<input id="valor" type="number"></label></div></fieldset>
+
+<fieldset><legend>Datos del riesgo</legend><div class="g">
+<label>Cobertura<select id="cobertura"><option value="">Elegir…</option><option value="RC">RC - Responsabilidad Civil</option><option value="TC">TC - Terceros Completos</option><option value="TR">TR - Todo Riesgo</option></select></label>
+<label>Edad del conductor<input id="edad" type="number"></label>
+<label>Zona de radicación<select id="zona"><option value="">Elegir…</option><option>CABA</option><option>GBA</option><option>INTERIOR</option></select></label>
+<label>Siniestros últimos 24 meses<select id="sini"><option value="">Elegir…</option><option>0</option><option>1</option><option>2</option><option>3 o más</option></select></label>
+<label>Guarda en garaje<select id="garaje"><option value="">Elegir…</option><option>SI</option><option>NO</option></select></label></div></fieldset>
+
+<fieldset><legend>Condiciones comerciales</legend><div class="g">
+<label>Débito automático<select id="debito"><option value="">Elegir…</option><option>SI</option><option>NO</option></select></label>
+<label>Tiene otra póliza vigente<select id="otra"><option value="">Elegir…</option><option>SI</option><option>NO</option></select></label>
+<label>Antigüedad del cliente (años)<input id="antig" type="number" min="0"></label></div></fieldset>
+<button id="btnReg">Registrar solicitud</button>
+</form>
+
+<div id="msg" role="status"></div>
+
+<fieldset><legend>Solicitud</legend>
+<p>Estado: <b id="estado">Sin solicitud</b> · N.º de póliza: <span id="nro">—</span></p>
+<button id="btnVal" disabled>Validar reglas</button>
+<button id="btnCan" class="sec" disabled>Cancelar solicitud</button>
+<button id="btnSus" class="sec" disabled>Enviar a Suscripción (provisorio)</button>
+<button id="btnEmi" disabled>Emitir póliza</button>
+<div class="pend">Envío a Suscripción por valor del vehículo: pendiente de decisión (RF-03); el botón provisorio lo reemplaza. Premio: pendiente de decisión (RF-07).</div>
+<div id="susc" hidden style="margin-top:10px"><b>Suscripción</b><br>
+<button id="btnIns">Pedir inspección previa</button><button id="btnDic">Dictamen favorable</button><button id="btnRec" class="sec">Rechazar solicitud</button>
+<div id="insp" class="pend" hidden>Inspección previa pedida.</div></div>
+</fieldset>
+
+<fieldset id="cert" hidden><legend>Datos entregados al productor</legend><dl id="certDl"></dl></fieldset>
+</main>
+
+<script>
+// Datos en memoria (sin almacenamiento del navegador).
+const ANIO_ACTUAL = new Date().getFullYear();
+let sol = null, seq = 0;
+const $ = id => document.getElementById(id);
+const CAMPOS = ['usuario','cliente','vehiculo','anio','valor','cobertura','edad','zona','sini','garaje','debito','otra','antig'];
+const msg = (t, c) => { $('msg').textContent = t; $('msg').className = c || ''; };
+const est = () => sol ? sol.estado : null;
+
+function pintar(){                                   // RF-11: estado y número siempre visibles
+  $('estado').textContent = sol ? sol.estado : 'Sin solicitud';
+  $('nro').textContent = sol && sol.nro ? sol.nro : '—';
+  const e = est();
+  $('btnReg').disabled = !!e && !['Cancelada','Rechazada','Emitida'].includes(e);
+  $('btnVal').disabled = e !== 'Solicitada';
+  $('btnCan').disabled = e !== 'Solicitada';          // RF-10
+  $('btnSus').disabled = e !== 'Solicitada';
+  $('btnEmi').disabled = e !== 'Validada';
+  $('susc').hidden = e !== 'En revisión técnica';
+  $('cert').hidden = e !== 'Emitida';
+}
+
+$('btnReg').onclick = () => {                         // RF-01, RF-12
+  const d = {}; CAMPOS.forEach(c => d[c] = $(c).value.trim());
+  const falta = CAMPOS.filter(c => d[c] === '');
+  if (falta.length){ msg('No se registra la solicitud: faltan datos (' + falta.join(', ') + ').', 'er'); return; }
+  sol = { d, estado: 'Solicitada', nro: null }; $('insp').hidden = true;
+  msg('Solicitud registrada.', 'ok'); pintar();
+};
+
+$('btnVal').onclick = () => {                         // UC-02 (include): regla de antigüedad, RF-02
+  const antig = ANIO_ACTUAL - Number(sol.d.anio);     // antigüedad = año en curso − año del vehículo
+  if (antig > 20){ msg('Se rechaza la solicitud. Regla incumplida: no se aseguran vehículos de más de veinte años.', 'er'); return; }
+  sol.estado = 'Validada'; msg('Reglas de suscripción cumplidas: la solicitud queda Validada.', 'ok'); pintar();
+};
+
+$('btnCan').onclick = () => { sol.estado = 'Cancelada'; sol.nro = null; msg('Solicitud cancelada. No se asignó número de póliza.', 'wa'); pintar(); };
+$('btnSus').onclick = () => { sol.estado = 'En revisión técnica'; msg('La solicitud pasó a Suscripción: queda En revisión técnica.', 'wa'); pintar(); };
+$('btnIns').onclick = () => { $('insp').hidden = false; msg('Inspección previa pedida: la solicitud sigue En revisión técnica.', 'wa'); };   // RF-04
+$('btnDic').onclick = () => { sol.estado = 'Validada'; msg('Dictamen favorable registrado: la solicitud queda Validada.', 'ok'); pintar(); };      // RF-05
+$('btnRec').onclick = () => { sol.estado = 'Rechazada'; msg('Suscripción rechazó la solicitud: no se puede emitir.', 'er'); pintar(); };           // RF-06
+
+$('btnEmi').onclick = () => {                         // RF-08, RF-09
+  sol.nro = String(++seq); sol.estado = 'Emitida'; const d = sol.d;
+  $('certDl').innerHTML = '';
+  [['N.º de póliza', sol.nro], ['Cliente', d.cliente], ['Vehículo', d.vehiculo + ' ' + d.anio], ['Cobertura', d.cobertura], ['Valor asegurado', d.valor], ['Emitida por', d.usuario]]
+    .forEach(([k, v]) => { const a = document.createElement('dt'), b = document.createElement('dd'); a.textContent = k; b.textContent = v; $('certDl').append(a, b); });
+  msg('Póliza emitida con el número ' + sol.nro + '.', 'ok'); pintar();
+};
+pintar();
+</script>
+</body>
+</html>
