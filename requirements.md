@@ -34,8 +34,12 @@ por qué no es un RF.
 
 | Fragmento | Texto | Categoría | Justificación |
 |-----------|-------|-----------|----------------|
-| | | | |
-| | | | |
+| Caso §4 (A. Pampín); Acta 4.5 | «Quiero un sistema rápido, moderno y fácil de usar. Que el productor lo pueda usar sin capacitación.» | Requisito no funcional (RNF) | Sin métrica; el acta lo dejó pendiente (equipo propone, Pampín aprueba, 30/10/2026). |
+| Caso §4 (A. Pampín); Acta 3.2 | «Quiero que esté antes de que se jubile Héctor.» (sistema operativo el 1/3/2027) | Objetivo/meta de negocio | Es un plazo del proyecto, no una función del sistema. |
+| Caso §2 | SIGA desarrollado en 2003 sobre Visual Basic 6 con SQL Server | Dato de contexto | Describe el sistema actual y no pide nada del nuevo. |
+| Caso §4 (J. Ponce); §3.2 | «Yo le cotizo el lunes y la póliza sale el jueves» (el circuito demora 24 a 72 horas hábiles) | Dato de contexto | Describe el proceso de hoy; origina RF-03 y RF-12. |
+| Caso §4 (S. Roldán) | «Si el cliente ya tiene otra póliza… hasta veinticinco» | Dato de contexto | Práctica informal que el Acta 3.3 dejó sin efecto. |
+| Acta 3.1 | Ramos hogar y accidentes personales quedan en SIGA hasta una segunda etapa | Dato de contexto | Delimita el alcance; el frente cubre solo automotores. |
 
 ## Conflictos u observaciones detectadas
 
