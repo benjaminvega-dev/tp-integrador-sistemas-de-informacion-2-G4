@@ -1,3 +1,5 @@
+
+
 # Requerimientos
 
 Completar a partir de los fragmentos de relevamiento del caso. Seguir
@@ -17,6 +19,7 @@ Frente 2 · Emisión de pólizas de automotor · Grupo G04. Convención de `skil
 | RF-05 | G04-8 | Cuando Suscripción registra un dictamen favorable sobre una solicitud En revisión técnica, el sistema debe dejarla Validada. | Negocio / Funcional | Caso §1.1 (Suscriptor) y §3.2 (paso 6) | Con dictamen favorable la solicitud pasa de En revisión técnica a Validada. |
 | RF-06 | G04-9 | Cuando Suscripción rechaza el riesgo de una solicitud En revisión técnica, el sistema debe dejarla Rechazada y no permitir emitirla. [NEEDS CLARIFICATION: el caso no dice qué datos registra el rechazo, si puede reabrirse ni qué significa «aceptar con condiciones». Decide R. Ferreyra.] | Negocio / Funcional | Caso §1.1 (Suscriptor) y §6 (Suscripción, Rechazo) | Con el rechazo la solicitud queda Rechazada y no se puede emitir. |
 | RF-07 | G04-10 | El sistema debe calcular el premio de la solicitud y mostrarlo antes de emitir. [NEEDS CLARIFICATION: la fórmula depende de los descuentos: J. Ponce dice que se suman y H. Vidal que están topeados (Acta 4.3); el cliente VIP lo define M. Duarte por antigüedad y R. Ferreyra por cantidad de pólizas (Acta 4.1). Deciden M. Duarte y H. Vidal (4.3); M. Duarte y R. Ferreyra (4.1).] | Negocio / Funcional | Caso §3.2 (paso 4) y §4; Acta 3.4, 4.1 y 4.3 | Pendiente: no se puede definir hasta que se decida la fórmula. |
+| RF-08 | G04-11 | Al emitir una solicitud Validada, el sistema debe asignarle un número de póliza único y dejarla Emitida. | Sistema / Funcional | Caso §2.1 (Emisión de póliza) y §3.2 (paso 6) | Dos emisiones seguidas reciben números distintos y quedan Emitidas. |
 
 ## Fragmentos que NO son requerimientos funcionales
 
