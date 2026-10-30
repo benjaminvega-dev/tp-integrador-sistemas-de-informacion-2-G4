@@ -42,6 +42,16 @@ por qué no es un RF.
 | Acta 3.1 | Ramos hogar y accidentes personales quedan en SIGA hasta una segunda etapa | Dato de contexto | Delimita el alcance; el frente cubre solo automotores. |
 
 ## Conflictos u observaciones detectadas
+- Conflicto resuelto: antigüedad máxima del vehículo. M. Duarte (20 años) y S. Roldán (hasta 25 con otra póliza); el Acta 3.3 ratifica 20 años (RF-02).
+- Conflicto abierto (RF-07): descuentos. J. Ponce («se suman») contra H. Vidal («están topeados»). Acta 4.3, 30/09/2026.
+- Conflicto abierto (RF-07): cliente VIP. M. Duarte (antigüedad, cinco años) contra R. Ferreyra (varias pólizas). Acta 4.1, 30/09/2026.
+- Pendiente (RF-03): umbral de valor para Suscripción. Acta 4.2, R. Ferreyra, 12/09/2026 (fecha vencida; se sigue sin definición).
+- SIGA no valida el año del vehículo (S. Roldán; observación de H. Vidal en el Acta 3.3, sin verificar): contrastar en SIGA con un vehículo de 21 años.
+- La pantalla de SIGA tiene un campo «Inspección previa» (SI/NO) que carga el operador; según el caso y el acta la inspección la pide Suscripción cuando el valor supera el umbral (hallazgo E3-1). Por eso RF-01 no incluye ese campo.
+- Acta 3.4: los productores emitirán por sí mismos (RF-12); hoy Mesa de Ayuda carga las solicitudes en SIGA (Caso §3.2). El modelo del frente (DFD y estados) describe SIGA actual.
+- La «resolución de intervenciones operativas por parte de Mesa de Ayuda» (consigna) no tiene fuente en el caso ni en el acta (hallazgo E1-5); no se escribió como requerimiento.
+- El documento de la póliza (Caso §5) incluye vigencia, franquicias y premio; la pantalla de emisión no tiene campos de vigencia ni franquicia. El premio depende de RF-07.
+- Las reglas de edad mínima del conductor y de valor asegurado mayor a cero que figuraban en una versión anterior no tienen fuente (el «Anexo técnico N.º 3» no se encontró) y se quitaron.
 
 Si al procesar los fragmentos aparece un conflicto de valores (ver
 "Detección de conflictos" en la skill), documentarlo acá aunque no
