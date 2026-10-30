@@ -21,6 +21,7 @@ Frente 2 · Emisión de pólizas de automotor · Grupo G04. Convención de `skil
 | RF-07 | G04-10 | El sistema debe calcular el premio de la solicitud y mostrarlo antes de emitir. [NEEDS CLARIFICATION: la fórmula depende de los descuentos: J. Ponce dice que se suman y H. Vidal que están topeados (Acta 4.3); el cliente VIP lo define M. Duarte por antigüedad y R. Ferreyra por cantidad de pólizas (Acta 4.1). Deciden M. Duarte y H. Vidal (4.3); M. Duarte y R. Ferreyra (4.1).] | Negocio / Funcional | Caso §3.2 (paso 4) y §4; Acta 3.4, 4.1 y 4.3 | Pendiente: no se puede definir hasta que se decida la fórmula. |
 | RF-08 | G04-11 | Al emitir una solicitud Validada, el sistema debe asignarle un número de póliza único y dejarla Emitida. | Sistema / Funcional | Caso §2.1 (Emisión de póliza) y §3.2 (paso 6) | Dos emisiones seguidas reciben números distintos y quedan Emitidas. |
 | RF-09 | G04-12 | El sistema debe entregar al productor los datos de la póliza emitida: número, cliente, vehículo, cobertura y valor asegurado. | Sistema / Funcional | Caso §3.2 (paso 6) y §5 (Póliza) | Tras emitir se ven el número, el cliente, el vehículo, la cobertura y el valor asegurado. |
+| RF-10 | G04-13 | El sistema debe permitir cancelar una solicitud Solicitada, sin asignarle número de póliza. | Usuario / Funcional | SIGA 6.1.3, botón «Cancelar»; diagrama de estados (1.3) | Con una solicitud Solicitada, cancelarla la deja Cancelada y sin número. |
 
 ## Fragmentos que NO son requerimientos funcionales
 
