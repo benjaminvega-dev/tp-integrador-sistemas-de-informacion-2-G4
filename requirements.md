@@ -11,7 +11,7 @@ Frente 2 · Emisión de pólizas de automotor · Grupo G04. Convención de `skil
 | ID | Requerimiento | Fragmento(s) de origen |
 |----|---------------|--------------------------|
 | RF-01 | G04-2 | El sistema debe registrar una solicitud de emisión de póliza de automotor para un cliente y un vehículo ya registrados, con el año del vehículo, el valor asegurado, los datos del riesgo (cobertura RC, TC o TR; edad del conductor; zona de radicación; siniestros de los últimos 24 meses; guarda en garaje) y las condiciones comerciales (débito automático, otra póliza vigente, antigüedad del cliente), y dejarla Solicitada. [NEEDS CLARIFICATION: los valores posibles de la zona de radicación no figuran en el caso ni en el acta. Decide R. Ferreyra.] | Usuario / Funcional | SIGA 6.1.3 «Emisión de pólizas»; Caso §2.1 (alta de cliente y de vehículo), §3.2 (paso 3) y §6 (coberturas); hallazgo E2-1 | Con los datos completos la solicitud queda Solicitada; si falta alguno, no se registra. |
-| RF-02 | | |
+| RF-02 | G04-5 | El sistema debe rechazar automáticamente toda solicitud de un vehículo de más de veinte años de antigüedad, sin excepciones ni posibilidad de forzar la carga. [NEEDS CLARIFICATION: ni el caso ni el acta dicen cómo se calcula la antigüedad (¿año en curso menos año de fabricación?) ni en qué estado queda la solicitud rechazada. Decide M. Duarte.] | Negocio / Funcional | Acta 3.3 (decisión de M. Duarte); Caso §4 (M. Duarte y S. Roldán) | Con un vehículo de 21 años se rechaza y no se puede forzar; con uno de 20 años sigue. |
 | RF-03 | | |
 | RF-04 | | |
 | RF-05 | | |
