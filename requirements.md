@@ -23,6 +23,7 @@ Frente 2 · Emisión de pólizas de automotor · Grupo G04. Convención de `skil
 | RF-09 | G04-12 | El sistema debe entregar al productor los datos de la póliza emitida: número, cliente, vehículo, cobertura y valor asegurado. | Sistema / Funcional | Caso §3.2 (paso 6) y §5 (Póliza) | Tras emitir se ven el número, el cliente, el vehículo, la cobertura y el valor asegurado. |
 | RF-10 | G04-13 | El sistema debe permitir cancelar una solicitud Solicitada, sin asignarle número de póliza. | Usuario / Funcional | SIGA 6.1.3, botón «Cancelar»; diagrama de estados (1.3) | Con una solicitud Solicitada, cancelarla la deja Cancelada y sin número. |
 | RF-11 | G04-14 | El sistema debe mostrar el estado actual de la solicitud y, tras emitirla, su número de póliza. | Usuario / Funcional | Hallazgo E1-7; diagrama de estados (1.3) | En cada paso el estado mostrado es el correcto; tras emitir se ve el número. |
+| RF-12 | G04-15 | Cada productor debe tener usuario propio y poder registrar y emitir una solicitud por sí mismo. | Usuario / Funcional | Acta 3.4 (decisión de A. Pampín); Caso §4 (J. Ponce) | Un productor con su usuario registra, valida y emite el caso base sin intervención de Mesa de Ayuda. |
 
 ## Fragmentos que NO son requerimientos funcionales
 
